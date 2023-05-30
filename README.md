@@ -6,100 +6,59 @@ Este é um sistema de gerenciamento de atendimento a clientes que permite regist
 
 Antes de executar o sistema, é necessário configurar um banco de dados MySQL com as tabelas necessárias. Siga os passos abaixo:
 
-1. Crie um banco de dados chamado "coisas_e_coisas":
+1. Certifique-se de ter o servidor MySQL instalado em seu ambiente de desenvolvimento.
+
+2. Crie um novo banco de dados no MySQL:
 
 ```sql
-CREATE DATABASE coisas_e_coisas;
+CREATE DATABASE nome_do_banco_de_dados;
 ```
 
-2. Selecione o banco de dados criado:
+3. Acesse o arquivo DatabaseConnection.java e atualize as configurações de conexão com o banco de dados, como o nome do banco, nome de usuário e senha.
 
-```sql
-USE coisas_e_coisas;
+4. Compile e execute o sistema. Certifique-se de que o arquivo `mysql-connector-java.jar` esteja adicionado ao classpath do projeto.
+
+5. O sistema permitirá o gerenciamento de clientes, serviços, prestadores de serviços e os serviços contratados. Ele fornecerá opções para adicionar, atualizar, remover e visualizar os registros.
+
+### Funcionalidades do Sistema
+
+O sistema oferece as seguintes funcionalidades:
+
+#### Conexão com o Banco de Dados
+
+A classe `DatabaseConnection` é responsável por estabelecer a conexão com o banco de dados MySQL. Ela utiliza a biblioteca `mysql-connector-java` para realizar a conexão e executar as consultas. Certifique-se de adicionar o arquivo JAR do conector MySQL ao classpath do projeto.
+
+#### Busca de um Registro Específico
+
+As classes DAO (Data Access Object) fornecem métodos para buscar registros específicos no banco de dados. Por exemplo, a classe `Cliente` contém o método `findOne(int id)` que permite buscar um cliente específico no banco de dados com base em seu ID. O método retorna um objeto `Cliente` contendo as informações do cliente encontrado.
+
+Exemplo de uso:
+
+```java
+Cliente cliente = new Cliente();
+cliente.findOne(cliente.id);
 ```
 
-3. Crie a tabela "clientes" com as colunas "id", "nome", "endereco", "telefone" e "email":
+#### Salvamento de Registros
 
-```sql
-CREATE TABLE clientes (
-  id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(255) NOT NULL,
-  endereco VARCHAR(255) NOT NULL,
-  telefone VARCHAR(20) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-);
+As classes DAO também possuem métodos `save()` para salvar ou atualizar registros no banco de dados. Por exemplo, a classe `Cliente` possui o método `save(Cliente cliente)` que permite salvar um novo cliente no banco de dados ou atualizar um cliente existente. O método recebe um objeto `Cliente` como parâmetro e verifica se o cliente já possui um ID atribuído. Se o ID estiver presente, o método atualiza os dados do cliente no banco de dados; caso contrário, ele insere um novo registro.
+
+Exemplo de uso:
+
+```java
+Cliente cliente= new Cliente("João da Silva", "joao@example.com", "123456789");
+cliente.save();
 ```
 
-4. Insira alguns registros de exemplo na tabela "clientes":
+#### Exclusão de Registros
 
-```sql
-INSERT INTO clientes (nome, endereco, telefone, email) VALUES 
-('João da Silva', 'Rua A, 123', '(11) 9999-8888', 'joao.silva@example.com'),
-('Lucas Roberto', 'Rua das Flores, 123', '(11) 98888-7777', 'ana.silva@gmail.com'),
-('José Santos', 'Avenida Paulista, 456', '(11) 97777-6666', 'jose.santos@hotmail.com');
+Os métodos `delete()` nas classes DAO permitem excluir registros do banco de dados com base em um critério específico. Por exemplo, a classe `Cliente` possui o método `delete(int id)` que permite excluir um cliente do banco de dados com base em seu ID.
+
+Exemplo de uso:
+
+```java
+cliente.delete(cliente.id);
 ```
-
-5. Crie a tabela "servicos" com as colunas "id", "nome", "descricao" e "valor":
-
-```sql
-CREATE TABLE servicos (
-  id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(255) NOT NULL,
-  descricao TEXT NOT NULL,
-  valor DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (id)
-);
-```
-
-6. Insira alguns registros de exemplo na tabela "servicos":
-
-```sql
-INSERT INTO servicos (nome, descricao, valor) VALUES
-('Reparos elétricos', 'Realização de reparos em instalações elétricas residenciais e comerciais', 120.00),
-('Reparos hidráulicos', 'Realização de reparos em encanamentos e tubulações hidráulicas', 150.00),
-('Reparos em alvenaria', 'Realização de reparos em estruturas e superfícies em alvenaria', 180.00);
-```
-
-7. Crie a tabela "prestador_de_servicos" com as colunas "id", "nome", "telefone" e "email":
-
-```sql
-CREATE TABLE prestador_de_servicos (
-  id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(255) NOT NULL,
-  telefone VARCHAR(20) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-);
-```
-
-8. Insira alguns registros de exemplo na tabela "prestador_de_servicos":
-
-```sql
-INSERT INTO prestador_de_servicos (nome, telefone, email) VALUES
-('João da Silva', '(11) 9999-8888', 'joao.silva@coisasecoisas.com'),
-('Maria dos Santos', '(11) 9888-7777', 'maria.santos@coisasecoisas);
-
-```
-
-9. Crie a tabela "servicos_contratados" com as colunas "id", "id_cliente", "id_servico" e "id_prestador":
-
-```sql
-CREATE TABLE servicos_contratados (
-  id INT NOT NULL AUTO_INCREMENT,
-  id_cliente INT NOT NULL,
-  id_servico INT NOT NULL,
-  id_prestador INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (id_cliente) REFERENCES clientes(id),
-  FOREIGN KEY (id_servico) REFERENCES servicos(id),
-  FOREIGN KEY (id_prestador) REFERENCES prestador_de_servicos(id)
-);
-```
-
-10. Compile e execute o sistema. Certifique-se de que o arquivo `mysql-connector-java.jar` esteja adicionado ao classpath do projeto.
-
-11. O sistema permitirá o gerenciamento de clientes, serviços, prestadores de serviços e os serviços contratados. Ele fornecerá opções para adicionar, atualizar, remover e visualizar os registros.
 
 ## Como executar o Sistema
 
