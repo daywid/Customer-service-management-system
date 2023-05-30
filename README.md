@@ -14,7 +14,7 @@ Antes de executar o sistema, é necessário configurar um banco de dados MySQL c
 CREATE DATABASE nome_do_banco_de_dados;
 ```
 
-3. Acesse o arquivo DatabaseConnection.java e atualize as configurações de conexão com o banco de dados, como o nome do banco, nome de usuário e senha.
+3. Acesse o arquivo ConexaoMySQL.java e atualize as configurações de conexão com o banco de dados, como o nome do banco, nome de usuário e senha.
 
 4. Compile e execute o sistema. Certifique-se de que o arquivo `mysql-connector-java.jar` esteja adicionado ao classpath do projeto.
 
@@ -27,11 +27,11 @@ O sistema oferece as seguintes funcionalidades:
 
 #### Conexão com o Banco de Dados
 
-A classe `DatabaseConnection` é responsável por estabelecer a conexão com o banco de dados MySQL. Ela utiliza a biblioteca `mysql-connector-java` para realizar a conexão e executar as consultas. Certifique-se de adicionar o arquivo JAR do conector MySQL ao classpath do projeto.
+A classe `ConexaoMySQL` é responsável por estabelecer a conexão com o banco de dados MySQL. Ela utiliza a biblioteca `mysql-connector-java` para realizar a conexão e executar as consultas. Certifique-se de adicionar o arquivo JAR do conector MySQL ao classpath do projeto.
 
 #### Busca de um Registro Específico
 
-As classes DAO (Data Access Object) fornecem métodos para buscar registros específicos no banco de dados. Por exemplo, a classe `Cliente` contém o método `findOne(int id)` que permite buscar um cliente específico no banco de dados com base em seu ID. O método retorna um objeto `Cliente` contendo as informações do cliente encontrado.
+As classes DAO (Data Access Object) fornecem métodos para buscar registros específicos no banco de dados. Por exemplo, a classe `Cliente` contém o método `findOne()` que permite buscar um cliente específico no banco de dados com base em seu ID. O método retorna um objeto `Cliente` contendo as informações do cliente encontrado.
 
 Exemplo de uso:
 
@@ -42,7 +42,7 @@ cliente.findOne(cliente.id);
 
 #### Salvamento de Registros
 
-As classes DAO também possuem métodos `save()` para salvar ou atualizar registros no banco de dados. Por exemplo, a classe `Cliente` possui o método `save(Cliente cliente)` que permite salvar um novo cliente no banco de dados ou atualizar um cliente existente. O método recebe um objeto `Cliente` como parâmetro e verifica se o cliente já possui um ID atribuído. Se o ID estiver presente, o método atualiza os dados do cliente no banco de dados; caso contrário, ele insere um novo registro.
+As classes DAO também possuem métodos `save()` para salvar ou atualizar registros no banco de dados. Por exemplo, a classe `Cliente` possui o método `save()` que permite salvar um novo cliente no banco de dados ou atualizar um cliente existente. O método recebe um objeto `Cliente` como parâmetro e verifica se o cliente já possui um ID atribuído. Se o ID estiver presente, o método atualiza os dados do cliente no banco de dados, caso contrário, ele insere um novo registro.
 
 Exemplo de uso:
 
@@ -53,7 +53,7 @@ cliente.save();
 
 #### Exclusão de Registros
 
-Os métodos `delete()` nas classes DAO permitem excluir registros do banco de dados com base em um critério específico. Por exemplo, a classe `Cliente` possui o método `delete(int id)` que permite excluir um cliente do banco de dados com base em seu ID.
+Os métodos `delete()` nas classes DAO permitem excluir registros do banco de dados com base em um critério específico. Por exemplo, a classe `Cliente` possui o método `delete()` que permite excluir um cliente do banco de dados com base em seu ID.
 
 Exemplo de uso:
 
