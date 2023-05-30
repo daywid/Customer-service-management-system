@@ -20,9 +20,10 @@ CREATE DATABASE nome_do_banco_de_dados;
 
 5. O sistema permitirá o gerenciamento de clientes, serviços, prestadores de serviços e os serviços contratados. Ele fornecerá opções para adicionar, atualizar, remover e visualizar os registros.
 
-### Funcionalidades do Sistema
+## Funcionalidades do Sistema
 
 O sistema oferece as seguintes funcionalidades:
+
 
 #### Conexão com o Banco de Dados
 
