@@ -22,6 +22,7 @@ CREATE DATABASE nome_do_banco_de_dados;
 
 ## Funcionalidades do Sistema
 
+
 O sistema oferece as seguintes funcionalidades:
 
 
