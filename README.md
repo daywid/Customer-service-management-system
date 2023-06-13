@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Atendimento a Clientes
 
-Este é um sistema de gerenciamento de atendimento a clientes que permite registrar clientes, serviços, prestadores de serviços e os serviços contratados. O sistema é implementado em Java e utiliza um banco de dados MySQL para armazenar os dados.
+Este é um protótipo de um sistema de gerenciamento de atendimento a clientes que permite registrar clientes, serviços, prestadores de serviços e os serviços contratados. O sistema é implementado em Java e utiliza um banco de dados MySQL para armazenar os dados.
 
 ## Configuração do Banco de Dados
 
